@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
 
 {% block body %} 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
-<p> Currently your MONTHLY limit is ₹ {{y}} </p>
+{% if limit is defined %}
 
+<p> Currently your MONTHLY limit is set to  ₹ {{ val }} </p>
+{% endif %}
 
-<form action="/limitnum" method="POST">
+<form method="POST">
+    {% csrf_token %}
 
     <p> ENTER the MONTHLY LIMIT to avoid over EXPENSES</p> <br/>
-    <input type="number" name="number" required/> <span> 
+    <input type="number" name="limit" required/> <span> 
         <button class="btn btn-warning" type="submit">ENTER</button>
     </span>
-    
-
-
-
 </form>
 {% endblock %}
