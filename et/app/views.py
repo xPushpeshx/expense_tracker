@@ -87,5 +87,8 @@ def limit(request):
 def signup(request):
     return render(request, 'signup.html', {})
 
-def year(request):
-    return render(request, 'year.html', {})
+def month(request):
+    user=request.user
+    obj=expense.objects.filter(user=user)
+    context={'obj':obj}
+    return render(request, 'month.html', context)
