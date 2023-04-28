@@ -2,28 +2,32 @@
 
 {% block body %} 
 
+<link rel="stylesheet" href="../static/css/add.css">
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h3>Add Expense</h3>
+            <h3 style="text-align:center;">Add Expense</h3>
             <form method="post">
                 {% csrf_token %}
                 
                 <div class="form-group">
                      <label for="">Date</label> 
-                     <input class="form-control" type="datetime-local" name="date" id="date"></div>
-                <div class="form-group"> <label for="">Expense name</label> 
-                    <input class="form-control" type="text" name="exp_name" id="expensename">
+                     <input class="form-control" type="date" name="date" id="date" >
                 </div>
+                
+                <div class="form-group"> <label for="">Expense name</label> 
+                    <input class="form-control" type="text" name="exp_name" id="expensename" value="Expense">
+                </div>
+                
                 <div class="form-group">
                      <label for="">Expense Amount</label> 
-                      <input class="form-control"  type="number" min="0" name="amount" id="amount">
+                      <input class="form-control"  type="number" min="0" name="amount" id="amount" required>
                 </div>
 
                 <div class="form-group">
-                    <label for=""></label> 
-                    <select class="form-control" name="pay_mode" id="paymode">
-                        <option  selected hidden>Pay-Mode</option>
+                    <label for="">Pay-Mode</label> 
+                    <select class="form-control" name="pay_mode" id="paymode" required>
+                        <!-- <option  selected hidden>Pay-Mode</option> -->
                         <option name="cash" value="cash">cash</option>
                         <option name="debitcard" value="debitcard">debitcard</option>
                         <option name="creditcard" value="creditcard">creditcard</option>
@@ -31,15 +35,15 @@
                         <option name="onlinebanking" value="onlinebanking">onlinebanking</option>
                     
                     </select>
-                
+                </div>
                
                 
 
                  <div class="form-group">
-                    <label for=""></label>
-                    <select class="form-control" name="category" id="category">
+                    <label for="">Category</label>
+                    <select class="form-control" name="category" id="category" required>
 
-                         <option selected hidden>Category</option>
+                         <!-- <option selected hidden>Category</option> -->
                         <option   name = "food" value="food">food</option>
                         <option name = "entertainment" value="entertainment">Entertainment</option>
                         <option name = "stocks" value="stocks">Stocks</option>
@@ -51,19 +55,41 @@
                 </div>
 
                
+                <div style="text-align:center"><input class="btn btn-dark" type="submit" value="Add" id="" ></div>                
                 
-                <input class="btn btn-danger" type="submit" value="Add" id="">
         
             </form>
-            
-            <div  style="position: relative; left: 590px; top: -460px;" class="imagge">
-                <img width="90%" height="90%" src="../static/images/addd.jpg" class="rounded float-left" alt="...">
+         </div>   
 
-               </div>
+            <!-- RECENT ADDED ITEMS MAX = 5 -->
+            <!-- let the history is the list of strings -->
+        
+        <div class="col">
+            <h3 style="text-align: center; margin-bottom: 10px;">Transactions</h3>
+            <div  class="transaction-history">        
+                    <ul id="transaction-list">
+                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                    </ul>
+                    <!-- something like this
+                        for transaction in transaction_history:
+                            ul.append(transaction)
+
+                        transaction := "fruits --- 50rs    27/4/2023"
+                     -->
+            </div>
               
         </div>
     </div>
     
 </div>
+
+    <script src="../static/js/add.js"></script>
    
     {% endblock %}
