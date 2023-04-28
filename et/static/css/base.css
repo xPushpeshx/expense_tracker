@@ -1,0 +1,31 @@
+#brand_name{
+    font-family: 'Caveat', cursive;
+    font-weight: bold;
+    font-size: 60px;
+    /* color: white; */
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;  
+    background-color: rgb(208, 210, 210);
+}
+
+.navbar-container{
+    color : white;
+    font-weight: bolder;
+    background-color: rgba(31, 30, 30, 0.24)
+    /* backdrop-filter: blur(10px); */
+}
+
+
+
+
+.navbar{
+    padding-top : 0px;
+    padding-bottom: 0px;
+    border: 0px;
+    margin: 0px;
+    
+    /* border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; */
+}

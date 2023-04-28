@@ -1,0 +1,18 @@
+.chart{
+    padding: 10px ;
+    border: 2px;
+    border-color: rgb(209, 205, 205);
+    border-style: solid;
+}
+
+nav{
+    background-image: url("https://img.freepik.com/free-vector/white-background-with-wavy-lines_23-2149124447.jpg?w=1380&t=st=1682670075~exp=1682670675~hmac=04ca8e3135fc0f6449bd33b5605de8d9d01885e9eda6edd6698dfad6187e91b8") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* backdrop-filter: blur(5px); */
+}
+
+body{
+    background-color: rgb(35, 53, 70);
+}
+
