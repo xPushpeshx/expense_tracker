@@ -13,6 +13,6 @@ urlpatterns = [
     path('homepage/', views.homepage,name="homepage"),
     path('limit/', views.limit,name="limit"),
     path('signup/', views.signup,name="signup"),
-    path('year/', views.year,name="year"),
+    path('month/', views.month,name="month"),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]
