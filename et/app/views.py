@@ -24,12 +24,6 @@ def add(request):
     else:
         return render(request, 'add.html', {})
 
-def base(request):
-    return render(request, 'base.html', {})
-
-def home(request):
-    return render(request, 'home.html', {})
-
 def display(request):
     user=request.user
     obj=expense.objects.filter(user=user)
