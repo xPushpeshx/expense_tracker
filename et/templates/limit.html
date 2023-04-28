@@ -1,25 +1,34 @@
 {% extends 'base.html' %}
 
 {% block body %} 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
 
-{% if limit is defined %}
+<link rel="stylesheet" href="../static/css/limit.css">
+<div class="limit_container">
+    
+    <!-- {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} -->
 
-<p> Currently your MONTHLY limit is set to  ₹ {{ val }} </p>
-{% endif %}
-
-<form method="POST">
-    {% csrf_token %}
-
-    <p> ENTER the MONTHLY LIMIT to avoid over EXPENSES</p> <br/>
-    <input type="number" name="limit" required/> <span> 
-        <button class="btn btn-warning" type="submit">ENTER</button>
-    </span>
-</form>
+    <div style="height:100px;"></div>
+    
+    {% if limit is defined %}
+    
+    <p style="font-family: 'Source Code Pro', monospace; font-weight: bold; font-size:30px;"> Current LIMIT is ₹ {{ val }} </p>
+    {% endif %}
+    
+    <div style="height:100px;"></div>
+    <form method="POST">
+        {% csrf_token %}
+    
+        <p>ENTER the MONTHLY LIMIT to avoid over EXPENSES</p> <br/>
+        <input type="number" name="limit" min="0" required style="border-width: 2px; border-color: rgb(60, 60, 57); padding: 6px; " /> <span> 
+            <button class="btn btn-dark" type="submit">SET</button>
+        </span>
+    </form>
+    
+</div>
 {% endblock %}
