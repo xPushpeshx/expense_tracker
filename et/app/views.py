@@ -3,9 +3,45 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import limit_val , expense
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
-def login(request):
-    return render(request, 'login.html', {})
+
+def login_page(request):
+    if request.method == 'POST':
+        # Login form submitted
+        login_form = AuthenticationForm(request=request, data=request.POST)
+        if login_form.is_valid():
+            username = login_form.cleaned_data.get('username')
+            password = login_form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request,user)
+                return redirect('/homepage/')  # Replace 'home' with your desired URL after login
+
+        # Signup form submitted
+        signup_form = UserCreationForm(request.POST)
+        if signup_form.is_valid():
+            user = signup_form.save()
+            messages.success(request, ('Succesfully account created!'))
+            username = signup_form.cleaned_data.get('username')
+            raw_password = signup_form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request,user)
+            return redirect('/homepage/')  # Replace 'home' with your desired URL after login
+
+    else:
+        # Show both login and signup forms
+        login_form = AuthenticationForm()
+        signup_form = UserCreationForm()
+        return render(request, 'login.html', {'login_form': login_form, 'signup_form': signup_form})
+    login_form = AuthenticationForm()
+    signup_form = UserCreationForm()
+    # If forms are invalid or GET request, show the login/signup page
+    return render(request, 'login.html', {'login_form': login_form, 'signup_form': signup_form})
+
+
 
 @csrf_exempt
 @login_required
