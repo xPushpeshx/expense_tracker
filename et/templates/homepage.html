@@ -4,21 +4,21 @@
 {% block body %}
 <link rel="stylesheet" href="../static/css/homepage.css"> 
     <div style="height:20px"></div>
-    <h3 style="text-align: center; color:white; font-size:50px">Expenditure Analysis</h3>
-    <div style="height:100px;"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col chart" style="margin:20px" >
+    <h3 style="text-align: center; font-size:50px">Expenditure Analysis</h3>
+    <!-- <div style="height:100px;"></div> -->
+    <div class="container-xl">
+        <div class="row gx-4 gy-4" >
+            <div class="col-6 chart"  >
                 <canvas id="myChart1" width="300" height="300"></canvas>
             </div>
-            <div class="col chart" style="margin:20px;" >
+            <div class="col-6 chart"  >
                 <canvas id="myChart2" width="300" height="300"></canvas>
             </div>
-            <div class="col chart" style="margin:20px;" >
+            <div class="col-6 chart"  >
                 <canvas id="myChart3" width="300" height="300"></canvas>
             </div>
         </div>
-    </div>
+    </div>  
     
     
     <script src="../static/js/homepage.js"></script>

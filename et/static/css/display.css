@@ -1,5 +1,5 @@
 .container{
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 #myChart{
@@ -7,12 +7,35 @@
 }
 
 .label_expense{
+    text-align: left;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.card-header , .card-title{
     text-align: center;
 }
 
-nav{
-    background-image: url("https://img.freepik.com/free-vector/white-background-with-wavy-lines_23-2149124447.jpg?w=1380&t=st=1682670075~exp=1682670675~hmac=04ca8e3135fc0f6449bd33b5605de8d9d01885e9eda6edd6698dfad6187e91b8") !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* backdrop-filter: blur(5px); */
+.category-card{
+    background-color: #f0fdf4;    
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    padding: 1rem;
+    /* margin: 2rem; */
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    color: #16a34a;
+    border-radius: 0.5rem;
+    flex-direction: column;
 }
+
+.category-card-heading{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.category-card:nth-child(odd){
+    margin-right: 20px;
+}
+

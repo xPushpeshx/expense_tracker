@@ -3,6 +3,20 @@ const yValues = [7,8,8,9,9,9,10,11,14,14,15];
 
 // Chart.defaults.global.defaultFontColor = "#fff";
 
+const chartAreaBorder = {
+    id: 'chartAreaBorder',
+    beforeDraw(chart, args, options) {
+      const {ctx, chartArea: {left, top, width, height}} = chart;
+      ctx.save();
+      ctx.strokeStyle = options.borderColor;
+      ctx.lineWidth = options.borderWidth;
+      ctx.setLineDash(options.borderDash || []);
+      ctx.lineDashOffset = options.borderDashOffset;
+      ctx.strokeRect(left, top, width, height);
+      ctx.restore();
+    }
+  };
+
 const plugin = {
     id: 'customCanvasBackgroundColor',
     beforeDraw: (chart, args, options) => {
@@ -26,7 +40,7 @@ new Chart("myChart1", {
                     data : [ 186, 205, 1321, 1516, 2107,
                             2191, 3133, 3221, 4783, 5478 ],
                     label : "America",
-                    borderColor : "#3cba9f",
+                    borderColor : "#9ca3af",
                     fill : false,
                 }]
     },
@@ -43,11 +57,15 @@ new Chart("myChart1", {
                 }
             }
         },
-        title : {
-            display : true,
-            text : 'Chart JS Line Chart Example'
-        }
-    }
+        plugins: {
+            title: {
+                display: true,
+                text: 'Category wise Expense',
+                
+              }
+        },
+        // plugins: [chartAreaBorder]
+    },
 });
 
 
@@ -86,7 +104,11 @@ new Chart("myChart2", {
             }
             
         },
-    }
+        plugins: {
+            
+        },
+},
+    plugins: []
 });
 
 

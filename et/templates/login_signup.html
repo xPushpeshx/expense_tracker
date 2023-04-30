@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href={% static "login_signup/login.css" %}>
+</head>
+<body>
+    <h2>Expense Manager Login</h2>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method="POST">
+                {% csrf_token %}
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href={% url 'social:begin' 'google-oauth2' %} class="social" ><i><img src={% static "images/google.png" %} /></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                {{signup_form.username }}
+                {{ signup_form.email }}
+                {{ signup_form.password1 }}
+                {{ signup_form.password2 }}
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form method="POST">
+                {% csrf_token %}
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a> -->
+                    <a href={% url 'social:begin' 'google-oauth2' %} class="social" ><i><img src={% static "images/google.png" %} /></i></a>
+                    <!-- <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
+                </div>
+                <span>or use your account</span>
+                {{ login_form.username }}
+                {{ login_form.password }}
+                <a href="#">Forgot Password ??</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            Made with <span class="heart">&hearts;</span> by <a
+              href="https://github.com/yaksh-ai/expense_tracker"
+              >Pushpesh + Priyank + Surya</a
+            >
+        </p>
+    </footer>
+    <script src={% static "login_signup/login.js" %}></script>
+    <script>
+        var x=document.getElementById("id_username")[0];
+        x.setAttribute('placeholder','Username')
+    </script>
+</body>
+</html>
+
+

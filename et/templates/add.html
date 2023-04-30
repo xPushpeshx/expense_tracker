@@ -16,7 +16,7 @@
                 </div>
                 
                 <div class="form-group"> <label for="">Expense name</label> 
-                    <input class="form-control" type="text" name="exp_name" id="expensename" value="Expense">
+                    <input class="form-control" type="text" name="exp_name" id="expensename" placeholder="Expense"  required>
                 </div>
                 
                 <div class="form-group">
@@ -55,7 +55,7 @@
                 </div>
 
                
-                <div style="text-align:center"><input class="btn btn-dark" type="submit" value="Add" id="" ></div>                
+                <div style="text-align:center"><input class="btn btn-primary addExpense " type="submit" value="Add" id="" ></div>                
                 
         
             </form>
@@ -68,14 +68,9 @@
             <h3 style="text-align: center; margin-bottom: 10px;">Transactions</h3>
             <div  class="transaction-history">        
                     <ul id="transaction-list">
-                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
-                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
-                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
-                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
-                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
-                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
-                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
-                        <div class="transaction-list-item"><li style="padding-top: 11px;">Fruits --- 50rs   27/4/2023</li></div>
+                        {% for x in obj %}
+                        <div class="transaction-list-item"><li>{{ x }}</li></div>
+                        {% endfor %}
                     </ul>
                     <!-- something like this
                         for transaction in transaction_history:
