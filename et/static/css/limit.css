@@ -1,4 +1,9 @@
 .limit_container{
+    align-self : center;
     align-items: center;
     text-align: center;
+    padding: 10px ;
+    border: 2px;
+    border-color: #6b7280;
+    border-style: solid;
 }

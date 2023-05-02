@@ -9,7 +9,7 @@ urlpatterns = [
     path('display/', views.display,name="display"),
     path('edit/', views.edit,name="edit"),
     path('homepage/', views.homepage,name="homepage"),
-    path('limit/', views.limit,name="limit"),
-    path('month/', views.month,name="month"),
+    path('month/', views.month_view,name="month"),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('news/',views.news,name="news"),
 ]

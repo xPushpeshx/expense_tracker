@@ -1,25 +1,71 @@
 {% extends 'base.html' %}
 
-
+{% load static %}
 {% block body %}
-<link rel="stylesheet" href="../static/css/homepage.css"> 
-    <div style="height:20px"></div>
-    <h3 style="text-align: center; font-size:50px">Expenditure Analysis</h3>
-    <!-- <div style="height:100px;"></div> -->
-    <div class="container-xl">
-        <div class="row gx-4 gy-4" >
-            <div class="col-6 chart"  >
-                <canvas id="myChart1" width="300" height="300"></canvas>
-            </div>
-            <div class="col-6 chart"  >
-                <canvas id="myChart2" width="300" height="300"></canvas>
-            </div>
-            <div class="col-6 chart"  >
-                <canvas id="myChart3" width="300" height="300"></canvas>
-            </div>
-        </div>
-    </div>  
-    
-    
-    <script src="../static/js/homepage.js"></script>
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+
+
+<div class="container mt-5 px-12 homepage-container ">
+  <div class="card-chart-container">
+    <!-- Card1 -->
+    <div class="card-first">
+      <div class="card-expense">
+
+        <p>Total Expense</p>
+        <h5>{{total}}</h5>
+        <a href="/add">Add Expense</a>
+      </div>
+      <div class="card-stock">
+        <i class="i-arcticons-stockswidget"></i>
+        <p>Stock</p>
+      </div>
+    </div>
+    <!-- Card1 end -->
+
+  <!-- Chart start -->
+    <div class=" chart">
+      <canvas id="myChart1" width="300" height="300"></canvas>
+    </div>
+    <!-- chart end -->
+  </div>
+
+  <div class="limit-container">
+    <h4>Set Limit</h4>
+    <div class="kuch">
+      {% if limit is defined %}
+      <p>Current Limit is</p>
+      <span>₹ {{ val }} </span>
+      {% else %}
+      <p>Current Limit is</p>
+      <span>₹ NOT SET </span>
+      {% endif%}
+    </div>
+    <!-- <div class="form-group">
+      <input type="number" class="form-control form-control-lg " id="limit" aria-describedby="emailHelp" placeholder="Enter limit">
+    </div> -->
+    <form class="form-inline">
+
+      <label class="mb-2 font-bold" for="limit">You can modify limit on 1st of every month</label>
+      <div class="form-group mr-sm-3 mb-2">
+        <input type="number" min="1" class="form-control form-control-lg" id="limit" placeholder="Enter limit">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg mb-2">Set limit</button>
+    </form>
+
+    <!-- chart 2 -->
+    <div class=" chart">
+      <canvas id="myChart2" width="300" height="300"></canvas>
+    </div>
+    <!-- chart 2 end -->
+
+  </div>
+</div>
+<!-- Card1 -->
+
+<div id="graph1-data-limit" hidden="hidden">{% for m in month %}{{m.total_limit}},{% endfor %}</div>
+<div id="graph1-data-expense" hidden="hidden">{% for m in month %}{{m.total_expense}},{% endfor %}</div>
+<div id="graph2-data" hidden="hidden"> 50,60,30,20,50,30,60,20,40,60,80,10,30,50,20,50,30,70,40,80,90,40,50</div>
+
+<div style="height:100px;"></div>
+<script src="{% static 'js/homepage.js' %}"></script>
 {% endblock %}

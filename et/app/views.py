@@ -1,12 +1,12 @@
 from django.shortcuts import render ,HttpResponseRedirect , redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import limit_val , expense
+from .models import limit_val , expense  , year , month
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from .forms import UserRegisterForm ,AuthenticateForm
-
+from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
 
@@ -56,6 +56,13 @@ def login_page(request):
 @login_required
 def add(request):
     user=request.user
+    today=datetime.today()
+    this_month = today.strftime('%B')
+    print(this_month)
+    
+    month_data=month.objects.filter(user=user)
+    total_exp=month.objects.filter(user=user,month_name=this_month).values_list('total_expense',flat=True)[0]
+    print(total_exp)
     if request.method == 'POST':
         exp_name = request.POST.get('exp_name')
         amount = request.POST.get('amount')
@@ -65,6 +72,11 @@ def add(request):
         if user is not None and (total+int(amount))<=cap:
                 data=expense(user=user,exp_name=exp_name,amount=amount,category=category,pay_mode=pay_mode)
                 data.save()
+                if month.objects.filter(user=user,month_name=this_month).exists():
+                    month.objects.filter(user=user,month_name=this_month).update(total_expense=total_exp+int(amount))
+                else:
+                    data=month(user=user,month_name=this_month,total_expense=total_exp+int(amount))
+                    data.save()
                 if left < (cap)*2/10:
                     subject = 'Expense Limit'
                     message = f'You have {left} rupee left of your expense limit'
@@ -72,6 +84,8 @@ def add(request):
                     recipient_list = [user.email, ]
                     send_mail( subject, message, email_from, recipient_list )
                 messages.success(request, ('Expense has been added to the list!'))
+                
+                print(month_data)
                 return redirect('/add/')
     else:
         obj=expense.objects.filter(user=user).order_by('-exp_id')[:5]
@@ -135,12 +149,12 @@ def display(request):
 def edit(request):
     return render(request, 'edit.html', {})
 
-def homepage(request):
-    return render(request, 'homepage.html', {})
-
 @csrf_exempt
-def limit(request):
+def homepage(request):
+    today=datetime.today()
+    this_month = today.strftime('%B')
     user=request.user
+    total, cap ,left=total_money(request)
     limit=limit_val.objects.filter(user=user).exists()
     val=0
     if not limit:
@@ -150,19 +164,30 @@ def limit(request):
                 limit = request.POST.get('limit')
                 data=limit_val(user=user,limit=limit)
                 data.save()
+                month_data=month(user=user,month=this_month,total_limit=limit)
+                month_data.save()
                 messages.success(request, ('Limit has been added to the list!'))
                 return redirect('/limit/')
     else:
         print('limit is not none')
         messages.error(request, ('Limit has been set for the month'))
         val=(limit_val.objects.filter(user=user)[0].limit)
-    return render(request, 'limit.html',{'val':val})
+    data_month=month.objects.filter(user=user)
+    data_daily=expense.objects.filter(user=user).values('date')
+    return render(request, 'homepage.html', {'val':val,'total':total,'month':data_month},{'daily':data_daily})
 
 def signup(request):
     return render(request, 'signup.html', {})
 
-def month(request):
+def month_view(request):  
     user=request.user
     obj=expense.objects.filter(user=user)
     context={'obj':obj}
     return render(request, 'month.html', context)
+
+def news(request):
+    import requests 
+    import json
+    news_api_request=requests.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=c9d36ebf21234679820ae4df3eb4f688")
+    api=json.loads(news_api_request.content)
+    return render(request,'news.html',{'api':api})

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,17 +16,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Open+Sans:wght@300&family=Pacifico&family=Source+Code+Pro&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;wght@300;400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Poppins:wght@200;300;400&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
 <!--FONTS END-->
 
 <!-- CUSTOM CSS -->
-<link rel="stylesheet" href="../static/css/base.css">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 <!-- END -->
 
     <title>MyBudget</title>
 </head>
 <body>
-  <div class="navbar-container">
-  <nav class="navbar sticky-top  navbar-expand-lg navbar-light" style="background-color: #f9fafb;">
+  <div class="navbar-container sticky-top">
+  <nav class="navbar sticky-top  navbar-expand-lg navbar-light">
     <a class="navbar-brand " href="#"><p id="brand_name">MyBudget</p></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,7 +48,7 @@
           <a class="nav-link" href="/display">Visuals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/limit">LIMIT</a>
+          <a class="nav-link" href="/news">News</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/month">History</a>

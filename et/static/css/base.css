@@ -1,7 +1,8 @@
 #brand_name{
-    font-family: 'Caveat', cursive;
-    font-weight: bold;
-    font-size: 60px;
+    /* font-family: 'Castoro Titling', cursive; */
+    font-family: 'Roboto Mono', monospace;
+    /* font-weight: bold; */
+    font-size: 50px;
     /* color: white; */
 }
 
@@ -12,11 +13,12 @@ body{
 
 .navbar-container{
     font-weight: bolder;
-    background-color: rgba(31, 30, 30, 0.24);
+    background-color: #f9fafb;
     /* backdrop-filter: blur(10px); */  
     border-bottom: 1px;
     border-color: #d1d5db;
     border: 1px solid #d1d5db;
+    z-index: 100;
 }
 
 

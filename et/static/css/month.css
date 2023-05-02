@@ -1,0 +1,4 @@
+.expense-history-item:hover{
+    transition: all 300 ease-in-out ;
+    background-color: #99f6e4;
+}

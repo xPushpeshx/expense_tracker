@@ -3,3 +3,5 @@ from .models import *
 
 admin.site.register(expense)
 admin.site.register(limit_val)
+admin.site.register(month)
+admin.site.register(year)
