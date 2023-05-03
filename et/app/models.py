@@ -54,7 +54,7 @@ class expense(models.Model):
     exp_name = models.CharField(max_length=100)
     amount = models.IntegerField()
     exp_id=models.AutoField(primary_key=True)
-    date = models.DateField(auto_now=True,editable=True,blank=True)
+    date = models.DateField(auto_now_add=True,editable=True)
     category=models.CharField(max_length=100,choices=categoryChoice,default='others')
     pay_mode=models.CharField(max_length=100,choices=payChoice,default='cash')
     

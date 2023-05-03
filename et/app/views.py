@@ -174,7 +174,8 @@ def homepage(request):
         val=(limit_val.objects.filter(user=user)[0].limit)
     data_month=month.objects.filter(user=user)
     data_daily=expense.objects.filter(user=user).values('date')
-    return render(request, 'homepage.html', {'val':val,'total':total,'month':data_month},{'daily':data_daily})
+    context={'data_daily':data_daily,'val':val,'total':total,'month':data_month}
+    return render(request, 'homepage.html', context)
 
 def signup(request):
     return render(request, 'signup.html', {})

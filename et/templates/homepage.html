@@ -61,10 +61,13 @@
   </div>
 </div>
 <!-- Card1 -->
+{% for d in data_daily %}
+{{d.date}} {{d.total_expense}}
+{% endfor %}
 
 <div id="graph1-data-limit" hidden="hidden">{% for m in month %}{{m.total_limit}},{% endfor %}</div>
 <div id="graph1-data-expense" hidden="hidden">{% for m in month %}{{m.total_expense}},{% endfor %}</div>
-<div id="graph2-data" hidden="hidden"> 50,60,30,20,50,30,60,20,40,60,80,10,30,50,20,50,30,70,40,80,90,40,50</div>
+<div id="graph2-data" hidden="hidden"> 0,0,300,</div>
 
 <div style="height:100px;"></div>
 <script src="{% static 'js/homepage.js' %}"></script>
