@@ -14,6 +14,24 @@ class limit_val(models.Model):
     limit = models.IntegerField()
     def __str__(self):
         return self.user.username + ' has set a limit of Rupee : ' + str(self.limit)
+    
+class month(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    month_id=models.AutoField(primary_key=True)
+    month_name = models.CharField(max_length=100)
+    total_expense=models.IntegerField(default=0)
+    total_limit=models.IntegerField(default=0)
+    def __str__(self):
+        return self.user.username + ' has set a month : ' + str(self.month_name)
+    
+class year(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    year_id=models.AutoField(primary_key=True)
+    year_name = models.CharField(max_length=100)
+    total_expense=models.IntegerField(default=0)
+    total_limit=models.IntegerField(default=0)
+    def __str__(self):
+        return self.user.username + ' has set a year : ' + str(self.year_name)
 
 class expense(models.Model):
     payChoice=(
@@ -36,7 +54,7 @@ class expense(models.Model):
     exp_name = models.CharField(max_length=100)
     amount = models.IntegerField()
     exp_id=models.AutoField(primary_key=True)
-    date = models.DateField(auto_now=True,editable=False,blank=True)
+    date = models.DateField(auto_now_add=True,editable=True)
     category=models.CharField(max_length=100,choices=categoryChoice,default='others')
     pay_mode=models.CharField(max_length=100,choices=payChoice,default='cash')
     

@@ -3,71 +3,94 @@ const yValues = [7,8,8,9,9,9,10,11,14,14,15];
 
 // Chart.defaults.global.defaultFontColor = "#fff";
 
-const plugin = {
-    id: 'customCanvasBackgroundColor',
-    beforeDraw: (chart, args, options) => {
-      const {ctx} = chart;
-      ctx.save();
-      ctx.globalCompositeOperation = 'destination-over';
-      ctx.fillStyle = options.color || '#99ffff';
-      ctx.fillRect(0, 0, chart.width, chart.height);
-      ctx.restore();
-    }
-  };
+var chart1_data_limit = document.getElementById("graph1-data-limit").innerHTML.split(',').map( (x)=>{return parseFloat(x);} )
+var chart1_data_expense = document.getElementById("graph1-data-expense").innerHTML.split(',').map( (x)=>{return parseFloat(x);} )
 
 
 new Chart("myChart1", {
     type : 'bar',
     data : {
-        labels : [ 1500, 1600, 1700, 1750, 1800, 1850,
-                1900, 1950, 1999, 2050 ],
+        labels : [ "Jan", "Feb", "Mar", "Apr", "May", "June" , "July" , "Aug", "Sep", "Oct", "Nov", "Dec" ],
         datasets : [
                 {
-                    data : [ 186, 205, 1321, 1516, 2107,
-                            2191, 3133, 3221, 4783, 5478 ],
-                    label : "America",
-                    borderColor : "#3cba9f",
+                    data : chart1_data_limit,
+                    label : "Limit",
+                    borderColor : "#fff",
+                    backgroundColor : "#0e7490",
                     fill : false,
-                }]
+                },
+                {
+                    data : chart1_data_expense,
+                    label : "Expense",
+                    borderColor : "#0e7490",
+                    backgroundColor : "#059669",
+                    fill : false,
+                },
+            ]
     },
     options : {
         scales : {
             y : {
                 ticks : {
-                    color: "#fff",
+                    color: "#000",
                 }
             },
             x : {
                 ticks : {
-                    color: "#fff",
+                    color: "#000",
+                },
+                title: {
+                    display: true,
+                    text: 'Months'
                 }
             }
         },
-        title : {
-            display : true,
-            text : 'Chart JS Line Chart Example'
-        }
-    }
+        plugins: {
+            title: {
+                display: true,
+                text: 'Limit and Expense per Month',
+                
+              }
+        },
+        // plugins: [chartAreaBorder]
+    },
 });
 
+////////////////////////////////////////////////// CHART 2 ///////////////////////////////////////////
+
+function myFunction() {
+    var today = new Date();
+    var month = today.getMonth();
+    return (daysInMonth(month + 1, today.getFullYear()));
+}
+
+function daysInMonth(month,year) {
+  return new Date(year, month, 0).getDate();
+}
+
+var days = myFunction();
+var days_labels = [];
+for (var i = 0 ; i<days ;i++){
+    days_labels.push(i+1);
+}
+
+var chart2_data = document.getElementById("graph2-data").innerHTML.split(',').map( (x)=>{return parseFloat(x);} )
+var dates_for_label = [];
 
 new Chart("myChart2", {
     type : 'line',
     data : {
-        labels : [ 1500, 1600, 1700, 1750, 1800, 1850,
-                1900, 1950, 1999, 2050 ],
+        labels : days_labels,
         datasets : [
                 {
-                    data : [ 186, 205, 1321, 1516, 2107,
-                            2191, 3133, 3221, 4783, 5478 ],
-                    label : "America",
+                    data : chart2_data,
+                    label : "Daily Expense",
                     borderColor : "#3cba9f",
                     fill : false
                 },
                 {
-                    data : [ 1282, 1350, 2411, 2502, 2635,
-                            2809, 3947, 4402, 3700, 5267 ],
-                    label : "Europe",
+                    data : [],
+                    label : "some thing else",
                     borderColor : "#626CFC",
                     fill : false
                 } ]
@@ -76,59 +99,28 @@ new Chart("myChart2", {
         scales : {
             y : {
                 ticks : {
-                    color: "#fff",
+                    color: "#000",
                 }
             },
             x : {
                 ticks : {
-                    color: "#fff",
+                    color: "#000",
+                    maxRotation: 0,
+                    minRotation: 0,
+                },
+                title: {
+                    display: true,
+                    text: 'Days'
                 }
             }
-            
         },
-    }
-});
-
-
-new Chart("myChart3", {
-    type : 'line',
-    data : {
-        labels : [ 1500, 1600, 1700, 1750, 1800, 1850,
-                1900, 1950, 1999, 2050 ],
-        datasets : [
-                {
-                    data : [ 186, 205, 1321, 1516, 2107,
-                            2191, 3133, 3221, 4783, 5478 ],
-                    label : "America",
-                    borderColor : "#3cba9f",
-                    fill : false
-                },
-                {
-                    data : [ 1282, 1350, 2411, 2502, 2635,
-                            2809, 3947, 4402, 3700, 5267 ],
-                    label : "Europe",
-                    borderColor : "#626CFC",
-                    fill : false
-                } ]
-    },
-    options : {
-        scales : {
-            y : {
-                ticks : {
-                    color: "#fff",
-                },
-                grid: {
-                    color: 'white',
-                }
-            },
-            x : {
-                ticks : {
-                    color: "#fff",
-                },
-                grid: {
-                    display: false,
-                }
-            },
+        plugins: {
+            title: {
+                display: true,
+                text: 'Monthly Expenses',
+                
+              }
         },
-    }
+},
+    plugins: []
 });

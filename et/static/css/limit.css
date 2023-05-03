@@ -1,15 +1,9 @@
 .limit_container{
+    align-self : center;
     align-items: center;
     text-align: center;
-}
-
-body, nav{
-    background-image: url("https://img.freepik.com/free-vector/white-background-with-wavy-lines_23-2149124447.jpg?w=1380&t=st=1682670075~exp=1682670675~hmac=04ca8e3135fc0f6449bd33b5605de8d9d01885e9eda6edd6698dfad6187e91b8");
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* backdrop-filter: blur(5px); */
-}
-
-nav{
-    background-color: rgba(31, 30, 30, 0.24);
+    padding: 10px ;
+    border: 2px;
+    border-color: #6b7280;
+    border-style: solid;
 }

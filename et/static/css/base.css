@@ -1,20 +1,24 @@
 #brand_name{
-    font-family: 'Caveat', cursive;
-    font-weight: bold;
-    font-size: 60px;
+    /* font-family: 'Castoro Titling', cursive; */
+    font-family: 'Roboto Mono', monospace;
+    /* font-weight: bold; */
+    font-size: 50px;
     /* color: white; */
 }
 
 body{
     font-family: 'Open Sans', sans-serif;  
-    background-color: rgb(208, 210, 210);
+    /* background-color: rgb(208, 210, 210); */
 }
 
 .navbar-container{
-    color : white;
     font-weight: bolder;
-    background-color: rgba(31, 30, 30, 0.24)
-    /* backdrop-filter: blur(10px); */
+    background-color: #f9fafb;
+    /* backdrop-filter: blur(10px); */  
+    border-bottom: 1px;
+    border-color: #d1d5db;
+    border: 1px solid #d1d5db;
+    z-index: 100;
 }
 
 
@@ -29,3 +33,4 @@ body{
     /* border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px; */
 }
+

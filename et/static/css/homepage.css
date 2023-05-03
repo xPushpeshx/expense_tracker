@@ -1,18 +1,126 @@
-.chart{
-    padding: 10px ;
-    border: 2px;
-    border-color: rgb(209, 205, 205);
-    border-style: solid;
+.card-first{
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border: 1px solid #f3f4f6;
+    /* width: 60%; */
 }
 
-nav{
-    background-image: url("https://img.freepik.com/free-vector/white-background-with-wavy-lines_23-2149124447.jpg?w=1380&t=st=1682670075~exp=1682670675~hmac=04ca8e3135fc0f6449bd33b5605de8d9d01885e9eda6edd6698dfad6187e91b8") !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* backdrop-filter: blur(5px); */
+
+.card-expense{
+    display: flex;
+    flex-direction: column;
+    background-color: #1f2937;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    gap: 0.7rem;
+    
 }
 
-body{
-    background-color: rgb(35, 53, 70);
+.card-expense>p{
+    color: #f9fafb;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-weight: 500;
 }
 
+.card-expense> h5{
+    color: #f9fafb;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.card-expense>a{
+    all: unset;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 600;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 300ms ease-in;
+}
+
+.card-expense>a:hover{
+    /* background-color: #2563eb; */
+    transform: scale(1.05);
+
+}
+
+.card-stock{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2.5rem;
+    background-color: white;
+}
+
+.card-stock>p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    /* color: #1f2937; */
+    margin-bottom: 0;
+}
+
+.i-arcticons-stockswidget {
+    --un-icon: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 48 48' width='1.2em' height='1.2em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' d='M5.5 5.5v35a2 2 0 0 0 2 2h35M5.5 36h3m-3-6h3m-3-6h3m-3-6h3m-3-6h3'/%3E%3Ccircle cx='39' cy='12' r='3.5' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='33.28' cy='25.08' r='3.5' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='21.85' cy='18' r='3.5' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='15.2' cy='33' r='3.5' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' d='m16.62 29.8l3.81-8.6m9.88 2.04l-5.49-3.4m12.79-4.63l-2.88 6.69'/%3E%3C/svg%3E");
+    -webkit-mask: var(--un-icon) no-repeat;
+    mask: var(--un-icon) no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    color: inherit;
+    width: 7em;
+    height: 7em;
+  }
+
+  .homepage-container{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    column-gap: 2rem;
+  }
+
+  .card-chart-container{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%
+  }
+
+  .limit-container{
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border: 1px solid #f3f4f6;
+    display: flex;  
+    border-radius: 1rem;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+  }
+
+  .limit-container>h4{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem ;
+  }
+
+  .limit-container>.kuch{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .kuch>p{
+    margin-bottom: 0;
+  }
+
+  .kuch>span{
+    font-weight: 600;
+  }
+
+  .chart{
+    margin-top: 2rem;
+  }

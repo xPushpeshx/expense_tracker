@@ -21,23 +21,23 @@
 
     {% endif %}
    <div class="row">
-       <div class="col-md-6">
+       <div class="col-md-6 " style="margin:0 auto" >
            <h3 class="mt-5 label_expense">Total Expense Breakdown</h3>
            
-           <div class="card shadow mb-2 bg-white rounded-bottom">
+           <!-- <div class="card shadow mb-2 bg-white rounded-bottom">
                <div class="card-body ">
                <div class="row">
                    <div class="col-md-6">Food</div>
-                   <div id="tfood" class="col-md-6">  {{ combine.0 }}  </div>
+                   <div id="tfood" >  {{ combine.0 }}  </div>
                 </div>
                </div>
            </div>
 
-           <div class="card shadow mb-2 bg-white rounded">
+        <div class="card shadow mb-2 bg-white rounded">
             <div class="card-body">
             <div class="row">
                 <div class="col-md-6">Entertainment</div>
-                <div id="tentertainment" class="col-md-6"> {{ combine.1 }} </div>
+                <div id="tentertainment" > {{ combine.1 }} </div>
              </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="card-body">
             <div class="row">
                 <div class="col-md-6">Stocks</div>
-                <div id="tstocks" class="col-md-6"> {{ combine.2 }}  </div>
+                <div id="tstocks" > {{ combine.2 }}  </div>
              </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <div class="card-body">
             <div class="row">
                 <div  class="col-md-6">Rent</div>
-                <div id="trent" class="col-md-6"> {{ combine.3 }}   </div>
+                <div id="trent"> {{ combine.3 }}   </div>
              </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
             <div class="card-body">
             <div class="row">
                 <div class="col-md-6">Other</div>
-                <div id="tother" class="col-md-6">  {{ combine.5 }}</div>
+                <div id="tother" >  {{ combine.5 }}</div>
              </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
             <div class="card-body">
             <div class="row">
                 <div class="col-md-6">Total</div>
-                <div class="col-md-6">{{combine.6}} </div>
+                <div >{{combine.6}} </div>
              </div>
             </div>
         </div>
@@ -94,13 +94,69 @@
             <div class="card-body">
             <div class="row">
                 <div class="col-md-6">Left</div>
-                <div id="tleft" class="col-md-6">{{combine.7}}</div>
+                <div id="tleft" >{{combine.7}}</div>
              </div>
             </div>
         </div>
+            -->
 
+           <!-- NEW LOOK -->
+            <div class="row" style="" >
+                <div class="category-card col-sm-6 mb-3" style="max-width: 200px; "">
+                    <div class="category-card-heading">Food</div>
+                    <!-- <div class=""> -->
+                        <div id="tfood"> {{ combine.0 }} </div>
+                    <!-- </div> -->
+                </div>
+                <div class="category-card col-sm-6 mb-3" style="max-width: 200px; "">
+                    <div class="category-card-heading">Entertainment</div>
+                    <!-- <div class=""> -->
+                        <div id="tentertainment"> {{ combine.1 }} </div>
+                    <!-- </div> -->
+                </div>
+
+                <div class="category-card col-sm-6 mb-3" style="max-width: 200px; "">
+                    <div class="category-card-heading">Stocks</div>
+                    <!-- <div class=""> -->
+                        <div id="tstocks"> {{ combine.2 }} </div>
+                    <!-- </div> -->
+                </div>
+                <div class="category-card col-sm-6 mb-3" style="max-width: 200px; "">
+                    <div class="category-card-heading">Entertainment</div>
+                    <!-- <div class=""> -->
+                        <div id="trent"> {{ combine.3 }} </div>
+                    <!-- </div> -->
+                </div>
+
+                <div class="category-card col-sm-6 mb-3" style="max-width: 200px; "">
+                    <div class="category-card-heading">Emi</div>
+                    <!-- <div class=""> -->
+                        <div id="temi"> {{ combine.4 }} </div>
+                    <!-- </div> -->
+                </div>
+                <div class="category-card col-sm-6 mb-3" style="max-width: 200px; "">
+                    <div class="category-card-heading">Other</div>
+                    <!-- <div class=""> -->
+                        <div id="tother"> {{ combine.5 }} </div>
+                    <!-- </div> -->
+                </div>
+
+                <div class="category-card col-sm-6 mb-3" style="max-width: 200px; "">
+                    <div class="category-card-heading">Total</div>
+                    <!-- <div class=""> -->
+                        <div id="ttotal"> {{ combine.6 }} </div>
+                    <!-- </div> -->
+                </div>
+                <div class="category-card col-sm-6 mb-3" style="max-width: 200px; "">
+                    <div class="category-card-heading">Amount Left</div>
+                    <!-- <div class=""> -->
+                        <div id="tleft"> {{ combine.7 }} </div>
+                    <!-- </div> -->
+                </div>
+            </div>
 
        </div>
+       <!-- pi chart -->
        <div class="col-md-6">
         <canvas id="myChart" width="400" height="400"></canvas>
         <script>
@@ -120,13 +176,13 @@
                             label: 'Expenses Chart',
                             data: [food, entertainment, stocks, rent, emi, other,left],
                             backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(0, 255, 0)',
-                            'rgb(255, 205, 86)',
-                            'rgb(201, 203, 207)',
-                            'rgb(54, 162, 235)',
-                                'rgb(215, 159, 64)',
-                                'rgb(0, 0, 0)'
+                            '#fca5a5',
+                            '#a3e635',
+                            '#facc15',
+                            '#9ca3af',
+                            '#38bdf8',
+                            '#2dd4bf',
+                            'rgb(30, 30, 30)'
                             ],   
                         }]
                     },
@@ -146,6 +202,9 @@
                 </script>
        </div>
    </div>
+
+
+
 </div>
 {% endblock %}
 
