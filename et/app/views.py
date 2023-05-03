@@ -114,8 +114,12 @@ def total_money(request):
         elif x.category=='others':
             others_amount+=x.amount
     total=food_amount+entertainment_amount+stocks_amount+rent_amount+emi_amount+others_amount
-    cap=limit[0].limit
-    left=cap-total
+    if limit.exists():
+        cap=limit[0].limit
+        left=cap-total
+    else:
+        cap=0
+        left=0
     return total, cap ,left
 
 def display(request):
