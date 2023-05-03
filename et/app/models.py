@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-
+from datetime import datetime
 
 User=get_user_model()
 
@@ -14,6 +14,31 @@ class limit_val(models.Model):
     limit = models.IntegerField()
     def __str__(self):
         return self.user.username + ' has set a limit of Rupee : ' + str(self.limit)
+    
+class daily(models.Model):
+    daily_exp=models.CharField(max_length=62, default='0,'*30+'0')
+    daily_id=models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def record_daily_expense(self, amount):
+        # Get today's date
+        today = datetime.today()
+        # Get the index for today's date (1-31)
+        index = today.day - 1
+        # Split the zeros string into a list of integers
+        zeros_array= [int(x) for x in self.daily_exp.split(',')]
+        if zeros_array[index] != 0:
+            # If an expense has already been recorded, add the new amount to it
+            zeros_array[index] += int(amount)
+        else:
+            # If no expense has been recorded yet for today, set the expense to the new amount
+            zeros_array[index] = int(amount)
+        # Add the amount to the expense for today
+        # Convert the modified zeros array back to a string
+        zeros_string = ','.join(str(x) for x in zeros_array)
+        # Save the modified zeros string to the model instance
+        self.daily_exp = zeros_string
+        self.save()
     
 class month(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

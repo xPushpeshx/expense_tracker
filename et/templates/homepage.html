@@ -43,11 +43,11 @@
     <!-- <div class="form-group">
       <input type="number" class="form-control form-control-lg " id="limit" aria-describedby="emailHelp" placeholder="Enter limit">
     </div> -->
-    <form class="form-inline">
+    <form class="form-inline" method="POST">
 
       <label class="mb-2 font-bold" for="limit">You can modify limit on 1st of every month</label>
       <div class="form-group mr-sm-3 mb-2">
-        <input type="number" min="1" class="form-control form-control-lg" id="limit" placeholder="Enter limit">
+        <input type="number" min="1" class="form-control form-control-lg" name="limit" placeholder="Enter limit">
       </div>
       <button type="submit" class="btn btn-primary btn-lg mb-2">Set limit</button>
     </form>
@@ -61,13 +61,10 @@
   </div>
 </div>
 <!-- Card1 -->
-{% for d in data_daily %}
-{{d.date}} {{d.total_expense}}
-{% endfor %}
 
 <div id="graph1-data-limit" hidden="hidden">{% for m in month %}{{m.total_limit}},{% endfor %}</div>
 <div id="graph1-data-expense" hidden="hidden">{% for m in month %}{{m.total_expense}},{% endfor %}</div>
-<div id="graph2-data" hidden="hidden"> 0,0,300,</div>
+<div id="graph2-data" hidden="hidden">{% for d in daily_data %}{{d}}{% endfor %}</div>
 
 <div style="height:100px;"></div>
 <script src="{% static 'js/homepage.js' %}"></script>
