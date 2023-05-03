@@ -1,7 +1,7 @@
 from django.shortcuts import render ,HttpResponseRedirect , redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import limit_val , expense  , year , month
+from .models import limit_val , expense  , year , month , daily
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
@@ -38,6 +38,15 @@ def login_page(request):
             email = signup_form.cleaned_data.get('email')
             user = authenticate(username=username, password=raw_password, email=email)
             login(request,user)
+            today=datetime.today()
+            this_month = today.strftime('%B')
+            months=['January','February','March','April','May','June','July','August','September','October','November','December']
+            this_month_index=months.index(this_month)
+            for x in months[:this_month_index]:
+                data=month(user=user,month_name=x)
+                data.save()
+            
+
             return redirect('/homepage/')  # Replace 'home' with your desired URL after login
 
     else:
@@ -58,10 +67,11 @@ def add(request):
     user=request.user
     today=datetime.today()
     this_month = today.strftime('%B')
-    print(this_month)
-    
     month_data=month.objects.filter(user=user)
-    total_exp=month.objects.filter(user=user,month_name=this_month).values_list('total_expense',flat=True)[0]
+    if month_data.exists():
+        total_exp=month.objects.filter(user=user,month_name=this_month).values_list('total_expense',flat=True)[0]
+    else:
+        total_exp=0
     print(total_exp)
     if request.method == 'POST':
         exp_name = request.POST.get('exp_name')
@@ -72,6 +82,11 @@ def add(request):
         if user is not None and (total+int(amount))<=cap:
                 data=expense(user=user,exp_name=exp_name,amount=amount,category=category,pay_mode=pay_mode)
                 data.save()
+                if daily.objects.filter(user=user).exists():
+                    daily_data=daily.objects.get(user=user)
+                else:
+                    daily_data=daily.objects.create(user=user)
+                daily_data.record_daily_expense(amount)
                 if month.objects.filter(user=user,month_name=this_month).exists():
                     month.objects.filter(user=user,month_name=this_month).update(total_expense=total_exp+int(amount))
                 else:
@@ -161,24 +176,25 @@ def homepage(request):
     total, cap ,left=total_money(request)
     limit=limit_val.objects.filter(user=user).exists()
     val=0
-    if not limit:
-        print('limit is none')
-        if request.method == 'POST':     
-            if user is not None:
-                limit = request.POST.get('limit')
-                data=limit_val(user=user,limit=limit)
-                data.save()
-                month_data=month(user=user,month=this_month,total_limit=limit)
-                month_data.save()
-                messages.success(request, ('Limit has been added to the list!'))
-                return redirect('/limit/')
+    if daily.objects.filter(user=user).exists():
+        daily_data=daily.objects.filter(user=user).values('daily_exp')[0]['daily_exp']
     else:
-        print('limit is not none')
-        messages.error(request, ('Limit has been set for the month'))
-        val=(limit_val.objects.filter(user=user)[0].limit)
+        daily_data=None
+    print("daily data",daily_data)
+    if request.method == 'POST':     
+        if user is not None:
+            limit = request.POST.get('limit')
+            limit_val(user=user,limit=limit).save()
+            month_data=month(user=user,month_name=this_month,total_limit=limit)
+            month_data.save()
+            messages.success(request, ('Limit has been added to the list!'))
+            return redirect('/homepage/')
+    if limit:
+        val=limit_val.objects.filter(user=user).values('limit').reverse()[0]['limit']
+    else:
+        val=0
     data_month=month.objects.filter(user=user)
-    data_daily=expense.objects.filter(user=user).values('date')
-    context={'data_daily':data_daily,'val':val,'total':total,'month':data_month}
+    context={'daily_data':daily_data,'val':val,'total':total,'month':data_month}
     return render(request, 'homepage.html', context)
 
 def signup(request):
