@@ -21,22 +21,15 @@ class daily(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def record_daily_expense(self, amount):
-        # Get today's date
         today = datetime.today()
-        # Get the index for today's date (1-31)
         index = today.day - 1
-        # Split the zeros string into a list of integers
         zeros_array= [int(x) for x in self.daily_exp.split(',')]
         if zeros_array[index] != 0:
-            # If an expense has already been recorded, add the new amount to it
             zeros_array[index] += int(amount)
         else:
-            # If no expense has been recorded yet for today, set the expense to the new amount
             zeros_array[index] = int(amount)
-        # Add the amount to the expense for today
-        # Convert the modified zeros array back to a string
+
         zeros_string = ','.join(str(x) for x in zeros_array)
-        # Save the modified zeros string to the model instance
         self.daily_exp = zeros_string
         self.save()
     
