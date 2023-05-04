@@ -135,5 +135,5 @@ STATICFILES_DIRS = [STATIC_DIR]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '31642193718-t0trsoood1an2b2k832avcpc8ekj4iu7.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '632417300040-9n3n8jtp6iepcc2e726ql8fl5f5qig0k.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'

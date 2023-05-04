@@ -87,12 +87,6 @@ new Chart("myChart2", {
                     label : "Daily Expense",
                     borderColor : "#3cba9f",
                     fill : false
-                },
-                {
-                    data : [],
-                    label : "some thing else",
-                    borderColor : "#626CFC",
-                    fill : false
                 } ]
     },
     options : {
